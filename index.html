@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K. Kiran | AI Research & Innovation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic Reset & Typography */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Gray */
+            --accent-color: #28a745; /* Green */
+            --dark-bg: #1a1a2e; /* Deep dark blue for tech */
+            --light-text: #e0e0e0;
+            --card-bg: #2b2b40; /* Slightly lighter card background */
+            --border-color: #444;
+            --ai-glow-color: rgba(0, 255, 255, 0.6); /* Vibrant Cyan glow */
+            --ai-fade-color: rgba(0, 255, 255, 0.1); /* Faded cyan for backgrounds */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Roboto Mono', monospace; /* Techy font */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--light-text);
+            background-color: var(--dark-bg);
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            cursor: default; /* Default cursor */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--light-text);
+            margin-bottom: 15px;
+        }
+
+        h1 { font-size: 3.5em; }
+        h2 { font-size: 2.5em; }
+        h3 { font-size: 1.8em; }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--ai-glow-color); /* Glow on hover for links */
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); /* Initial glow */
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            box-shadow: 0 0 25px var(--primary-color); /* Stronger glow on hover */
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 0 25px var(--primary-color);
+            transform: scale(1.02);
+        }
+
+        /* --- Section Animations --- */
+        .section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px); /* Deeper initial slide */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slower transition */
+        }
+
+        .section.fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease-out 0.3s, transform 1s ease-out 0.3s; /* Delayed, slower animation */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); /* Subtle title glow */
+        }
+
+        .section-title.fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+            animation: line-grow 1.5s ease-out forwards; /* Animated underline */
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s; /* Delayed, slower animation */
+        }
+
+        .section-subtitle.fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header & Navbar */
+        .main-header {
+            background-color: rgba(16, 16, 30, 0.9); /* Slightly darker, more opaque */
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px); /* Frosted glass effect */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo a {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--light-text);
+        }
+
+        .logo .ai-spark {
+            color: var(--primary-color);
+            font-size: 0.8em;
+            vertical-align: super;
+            animation: pulse-glow 2s infinite alternate ease-in-out;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* More prominent glow */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--ai-glow-color); /* Cyan glow underline */
+            left: 0;
+            bottom: -5px;
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #0f0f1c, #070710); /* Deeper background */
+        }
+
+        /* Canvas for Particle Background */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Behind content */
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 20px;
+            animation: slide-in-up 1.2s ease-out; /* Slower hero content animation */
+            position: relative; /* To be above canvas */
+        }
+
+        .hero-content h1 {
+            font-size: 4.8em; /* Slightly larger */
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 20px var(--ai-glow-color), 0 0 30px rgba(0, 255, 255, 0.3); /* Stronger neon glow */
+        }
+
+        .hero-content h2 {
+            font-size: 2em; /* Slightly larger */
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.4em; /* Slightly larger */
+            margin-bottom: 40px;
+            max-width: 800px; /* Wider tagline */
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+
+        /* About Section */
+        .about-section {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 25px var(--ai-glow-color); /* Stronger glow */
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.08) rotateY(10deg); /* Subtle 3D rotation */
+            box-shadow: 0 0 40px var(--ai-glow-color); /* Even stronger glow */
+        }
+
+        .about-text {
+            flex: 2;
+            font-size: 1.15em; /* Slightly larger text */
+            line-height: 1.8;
+        }
+
+        /* Research Section */
+        .research-section {
+            background-color: var(--dark-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .research-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d; /* For possible 3D effects */
+        }
+
+        .research-card::before { /* Inner pulsating glow on hover */
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, var(--ai-glow-color) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: scale(0.1) translateZ(-1px); /* Ensure it's behind text */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .research-card:hover {
+            transform: translateY(-15px) rotateX(2deg); /* Lift and subtle 3D tilt */
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.4);
+            border-color: var(--primary-color);
+        }
+
+        .research-card:hover::before {
+            opacity: 0.25; /* Stronger subtle glow */
+            transform: scale(1) translateZ(-1px);
+            animation: card-glow-in 1s forwards; /* Re-trigger animation on hover */
+        }
+
+        .card-icon {
+            font-size: 3.5em; /* Larger icon */
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 15px rgba(40, 167, 69, 0.5); /* Icon glow */
+        }
+
+        .research-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            position: relative; z-index: 1;
+        }
+
+        .research-card p {
+            font-size: 0.95em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            position: relative; z-index: 1;
+        }
+
+        .research-card .tech-stack {
+            display: block;
+            font-size: 0.85em; /* Slightly larger */
+            color: var(--secondary-color);
+            margin-top: 10px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            position: relative; z-index: 1;
+        }
+
+        .research-card .read-more {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95em; /* Slightly larger */
+            margin-top: 10px;
+            position: relative; z-index: 1;
+        }
+
+        /* Publications Section */
+        .publications-section {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .publication-list {
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        .publication-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .publication-item.fade-in-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .publication-item i {
+            font-size: 2em; /* Larger icon */
+            color: var(--ai-glow-color); /* Cyan glow icon */
+            margin-right: 20px;
+            margin-top: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .publication-item p {
+            flex-grow: 1;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .publication-item em {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background-color: var(--dark-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-category:hover {
+             transform: scale(1.03) translateY(-5px); /* Lift and slight scale */
+             box-shadow: 0 0 25px var(--primary-color);
+             border-color: var(--ai-glow-color);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            font-size: 1.3em; /* Larger icon */
+            text-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 1em;
+            transition: color 0.2s ease;
+        }
+
+        .skill-category li:hover {
+            color: var(--ai-glow-color); /* Highlight skill on hover */
+        }
+
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--card-bg);
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .contact-info p i {
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.4em; /* Larger icon */
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            margin-right: 20px;
+            color: var(--light-text);
+            font-size: 2.2em; /* Larger social icons */
+            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--ai-glow-color);
+            transform: scale(1.15) translateY(-3px); /* Lift and scale */
+            text-shadow: 0 0 15px var(--ai-glow-color); /* Stronger glow */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            background-color: #16162a; /* Slightly darker input field */
+            color: var(--light-text);
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1em;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3); /* Inner shadow */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4), inset 0 0 10px rgba(0, 123, 255, 0.2); /* Stronger focus glow */
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-bg);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- Keyframe Animations --- */
+
+        /* AI Spark in Logo */
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--ai-glow-color); opacity: 1; }
+            50% { text-shadow: 0 0 15px var(--ai-glow-color), 0 0 30px var(--ai-glow-color); opacity: 0.9; }
+            100% { text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--ai-glow-color); opacity: 1; }
+        }
+
+        /* Hero Content Slide In */
+        @keyframes slide-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(80px); /* Deeper slide */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Research Card Inner Glow */
+        @keyframes card-glow-in {
+            0% { opacity: 0; transform: scale(0.1) translateZ(-1px); }
+            50% { opacity: 0.35; transform: scale(0.8) translateZ(-1px); }
+            100% { opacity: 0.25; transform: scale(1) translateZ(-1px); }
+        }
+
+        /* Section Title Underline Growth */
+        @keyframes line-grow {
+            0% { width: 0; }
+            100% { width: 80px; }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5em;
+            }
+
+            .hero-content h2 {
+                font-size: 1.5em;
+            }
+
+            .about-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                margin-bottom: 20px;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+            .hero-content h2 {
+                font-size: 1.2em;
+            }
+            .research-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo a {
+                font-size: 1.5em;
+            }
+            .hero-content h1 {
+                font-size: 2em;
+            }
+            .hero-content h2 {
+                font-size: 1em;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">K. Kiran <span class="ai-spark">AI</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <canvas id="particle-canvas"></canvas>
+            <div class="hero-content">
+                <h1>K. Kiran</h1>
+                <h2>Senior Technical Officer- III, CSIR-IICT | AI & Automation Expert| FIE , FIETE , SMIEEE</h2>
+                <p class="tagline">Pioneering advancements in Artificial Intelligence for real-world impact.</p>
+                <a href="#research" class="btn-primary">Explore My AI Research <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="images/kinnera_kiran_profile.jpg" alt="Kinnera Kiran">
+                    </div>
+                    <div class="about-text">
+                        <p>K Kiran  is a highly accomplished Senior Technical Officer - III at the CSIR - Indian Institute of Chemical Technology (IICT), Hyderabad. With a strong academic background including an M.E., he is a distinguished Fellow of IEI, Fellow of IETE, and a Senior Member of IEEE.</p>
+                        <p>His expertise spans cutting-edge domains including Artificial Intelligence, Image Processing, Automation & Control, and Bioinformatics. Mr. Kiran is dedicated to leveraging AI to solve complex scientific and industrial challenges, contributing significantly to innovative research and technological advancements.</p>
+                        <p>He is known for his work in applying artificial neural networks for various classification and identification problems, demonstrating a deep commitment to impactful scientific inquiry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="section research-section">
+            <div class="container">
+                <h2 class="section-title">AI Research & Projects</h2>
+                <p class="section-subtitle">Delving into the frontiers of Artificial Intelligence.</p>
+
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="card-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Mosquito Species Classification using ANN</h3>
+                        <p>Developed novel Artificial Neural Network models for accurate classification and identification of various mosquito species, crucial for vector-borne disease control. This project involved extensive image processing and pattern recognition techniques.</p>
+                        <span class="tech-stack">#ANN #ImageProcessing #Bioinformatics</span>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="card-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Automated Quality Control Systems</h3>
+                        <p>Designed and implemented AI-powered automation systems for industrial quality control, utilizing computer vision and machine learning to detect defects and anomalies in real-time production environments.</p>
+                        <span class="tech-stack">#ComputerVision #MachineLearning #Automation</span>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="card-icon"><i class="fas fa-dna"></i></div>
+                        <h3>Bioinformatics Data Analysis with AI</h3>
+                        <p>Applied advanced AI algorithms to analyze complex bioinformatics datasets, including genomic sequences and protein structures, to uncover new insights and accelerate drug discovery processes.</p>
+                        <span class="tech-stack">#DeepLearning #Bioinformatics #DataScience</span>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section publications-section">
+            <div class="container">
+                <h2 class="section-title">Selected Publications</h2>
+                <div class="publication-list">
+                    <div class="publication-item">
+                        <i class="fas fa-file-alt"></i>
+                        <p>Kiran, K., et al. (20XX). "An Artificial Neural Network Approach for Identification of Mosquito Vectors." <em>Journal of Vector Borne Diseases</em>, XX(X), pp. XXX-XXX. <a href="#" target="_blank">Link <i class="fas fa-external-link-alt"></i></a></p>
+                    </div>
+                    <div class="publication-item">
+                        <i class="fas fa-file-alt"></i>
+                        <p>Kiran, K., et al. (20YY). "Real-time Defect Detection in Manufacturing using Convolutional Neural Networks." <em>Proceedings of the IEEE International Conference on Automation and Control</em>, pp. YYY-YYY. <a href="#" target="_blank">Link <i class="fas fa-external-link-alt"></i></a></p>
+                    </div>
+                    </div>
+                <a href="#" class="btn-secondary">View All Publications <i class="fas fa-book"></i></a>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-laptop-code"></i> Programming & Frameworks</h3>
+                        <ul>
+                            <li>Python (TensorFlow, PyTorch, Keras)</li>
+                            <li>MATLAB</li>
+                            <li>C++</li>
+                            <li>OpenCV</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-line"></i> AI & Machine Learning</h3>
+                        <ul>
+                            <li>Artificial Neural Networks (ANNs)</li>
+                            <li>Deep Learning (CNNs, RNNs)</li>
+                            <li>Image Recognition</li>
+                            <li>Pattern Recognition</li>
+                            <li>Machine Vision</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-wrench"></i> Tools & Technologies</h3>
+                        <ul>
+                            <li>LabVIEW</li>
+                            <li>PLC Programming</li>
+                            <li>Data Visualization</li>
+                            <li>Cloud Platforms (basic)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Feel free to connect for collaborations or inquiries.</p>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> CSIR-Indian Institute of Chemical Technology, Hyderabad, India</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:kinnera.kiran@example.com">kinnera.kiran@example.com</a></p>
+                        <div class="social-links">
+                            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
+                            <a href="#" target="_blank" title="ResearchGate"><i class="fab fa-researchgate fa-2x"></i></a>
+                            <a href="#" target="_blank" title="GitHub"><i class="fab fa-github fa-2x"></i></a>
+                            </div>
+                    </div>
+                    <div class="contact-form">
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Kinnera Kiran. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for Section and Section Title/Subtitle reveal animation on scroll
+            const sections = document.querySelectorAll('.section');
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const sectionSubtitles = document.querySelectorAll('.section-subtitle');
+            const publicationItems = document.querySelectorAll('.publication-item');
+
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            const titleSubtitleObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { ...options, threshold: 0.5 }); // More aggressive for titles/subtitles
+
+            sectionTitles.forEach(title => {
+                titleSubtitleObserver.observe(title);
+            });
+            sectionSubtitles.forEach(subtitle => {
+                titleSubtitleObserver.observe(subtitle);
+            });
+
+            const publicationObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply animation with a slight delay for each item
+                        setTimeout(() => {
+                            entry.target.classList.add('fade-in-left');
+                            observer.unobserve(entry.target);
+                        }, index * 100); // 100ms delay per item
+                    }
+                });
+            }, options);
+
+            publicationItems.forEach(item => {
+                publicationObserver.observe(item);
+            });
+
+
+            // --- Canvas Particle Network Background ---
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const particleCount = 100;
+            const maxDistance = 120; // Max distance for lines between particles
+
+            // Adjust canvas size on window resize
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles(); // Reinitialize particles on resize
+            }
+
+            // Particle constructor
+            function Particle(x, y) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 1; // Velocity x
+                this.vy = (Math.random() - 0.5) * 1; // Velocity y
+                this.radius = Math.random() * 1.5 + 0.5; // Small particle size
+                this.alpha = Math.random() * 0.5 + 0.3; // Initial opacity
+            }
+
+            // Initialize particles
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            // Draw particles and lines
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p1 = particles[i];
+
+                    // Update position
+                    p1.x += p1.vx;
+                    p1.y += p1.vy;
+
+                    // Bounce off edges
+                    if (p1.x < 0 || p1.x > canvas.width) p1.vx *= -1;
+                    if (p1.y < 0 || p1.y > canvas.height) p1.vy *= -1;
+
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(0, 255, 255, ${p1.alpha})`; // Cyan color
+                    ctx.fill();
+
+                    // Draw lines to other particles
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const p2 = particles[j];
+                        const distance = Math.sqrt(
+                            (p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2
+                        );
+
+                        if (distance < maxDistance) {
+                            ctx.beginPath();
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            // Line opacity based on distance
+                            ctx.strokeStyle = `rgba(0, 123, 255, ${1 - (distance / maxDistance) * 0.8})`; // Blue color, fades out
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            // Event listener for window resize
+            window.addEventListener('resize', resizeCanvas);
+
+            // Initial setup for particles
+            resizeCanvas(); // Set initial size and init particles
+            animateParticles(); // Start animation loop
+        });
+    </script>
+</body>
+</html>
