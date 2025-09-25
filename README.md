@@ -14,6 +14,3 @@ You can click the Preview link to take a look at your changes.
 <div align="center">
  <img src="https://raw.githubusercontent.com/KiranKinnera/KiranKinnera/output/github-contribution-grid-snake.svg" alt="GitHub Contribution Snake" />
 </div>
-<div align="center">
- <img src="https://raw.githubusercontent.com/KiranKinnera/KiranKinnera/main/your-animation.gif" width="50%" alt="My AI Animation" />
-</div>
